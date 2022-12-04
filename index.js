@@ -40,8 +40,10 @@ switch (time) {
 // i PUNOLJETAN. Potom za MALOLJETAN ispisi "Korisnik je maloljentan", a za punoljetan "Korisnik je punoljetan". 
 // Ako korisnik nije unio broj napisi "Pogresan unos!". 
 
-var ageGroup = !isNaN(process.argv[2]) ? (process.argv[2] >= 18 ? "Korisnik je punoljetan." : "Korisnik je maloljetan.") : "Pogrešan unos.";
-console.log(ageGroup);
+var dob = +process.argv[2];
+var punoljetnost = dob >= 18 ? "Korisnik je punoljetan." : "Korisnik je maloljetan.";
+var dobnaSkupina = !dob ? "Pogrešan unos." : punoljetnost;
+console.log(dobnaSkupina);
 
 
 // Zadatak 3.
@@ -50,11 +52,11 @@ console.log(ageGroup);
 // Ukoliko je izvuceni broj identican korisnikovom sretnom broju ispisi "Jackpot!", a u suprotnom "Vise srece drugi put!". 
 // Napomena: Ukoliko ne znate koristiti Math.random pokusajte guglati kako se koristi.
 
-var chosenNumber = +process.argv[2];
+var chosenNumber = +process.argv[2] || 7;
 var randomNumber = Math.floor(Math.random() * 10);
 console.log(`Tvoj sretni broj je ${randomNumber}`);
 
-if ((chosenNumber === randomNumber) || ((isNaN(process.argv[2])) && (randomNumber === 7))) {
+if (chosenNumber === randomNumber) {
     console.log("Jackpot!");
 } else {
     console.log("Više sreće drugi put!");
@@ -62,7 +64,6 @@ if ((chosenNumber === randomNumber) || ((isNaN(process.argv[2])) && (randomNumbe
 
 switch (true) {
     case chosenNumber === randomNumber:
-    case (isNaN(process.argv[2])) && (randomNumber === 7):
         console.log("Jackpot!");
         break
     default:
